@@ -72,20 +72,6 @@ namespace Tennis_Open_Data_Standards
         /// </remarks>
         public string NativeGivenName { get; set; }
         /// <summary>
-        /// Other Names
-        /// </summary>
-        /// <remarks>
-        /// Names not captured in Native, Passport or Preferred
-        /// </remarks>
-        public string OtherNames { get; set; }
-        /// <summary>
-        /// Previous Names
-        /// </summary>
-        /// <remarks>
-        /// Names previously known by, usually through marraige.
-        /// </remarks>
-        public string PreviousNames { get; set; }
-        /// <summary>
         /// Birth Date
         /// </summary>
         /// <remarks>
