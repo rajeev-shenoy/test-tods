@@ -14,7 +14,7 @@ jobs:
 
     steps:
       - name: Checkout code
-      - uses: actions/checkout@v2
+        uses: actions/checkout@v2
         with:
             fetch-depth: 0
       #- name: Create zip file
@@ -39,7 +39,7 @@ jobs:
         with:
           proj-path: src/Tennis-Open-Data-Standards/Tennis-Open-Data-Standards.csproj
       - name: Create release
-      - uses: fregante/release-with-changelog@v3
+        uses: fregante/release-with-changelog@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-template: '- {title} ← {hash}'
