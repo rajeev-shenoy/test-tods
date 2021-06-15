@@ -64,14 +64,5 @@ namespace Tennis_Open_Data_Standards
         /// The contacts website.
         /// </remarks>
         public string Website { get; set; }
-        /// <summary>
-        /// IsPrivate
-        /// </summary>
-        /// <remarks>
-        /// If the details are private or can be published online. Usually for tournament directors, referees etc.
-        /// </remarks>
-
-        //XML minOccurs=0 to 1
-        public bool IsPrivate { get; set; }
     }
 }
