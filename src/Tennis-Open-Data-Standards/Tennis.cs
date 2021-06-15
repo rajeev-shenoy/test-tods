@@ -47,13 +47,6 @@ namespace Tennis_Open_Data_Standards
         [XmlElement(ElementName = "DataStandardsVersion", IsNullable = true)]
         public string DataStandardsVersion { get; set; }
         /// <summary>
-        /// CodesVersion
-        /// </summary>
-        /// <remarks>
-        /// The version of the Standard Codes the file is using.
-        /// </remarks>
-        public string CodesVersion { get; set; }
-        /// <summary>
         /// OrderOfPlays
         /// </summary>
         /// <remarks>
