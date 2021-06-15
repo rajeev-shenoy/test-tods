@@ -58,24 +58,6 @@ namespace Tennis_Open_Data_Standards
         /// </remarks>
         public string PreferredGivenName { get; set; }
         /// <summary>
-        /// Passport Family Name
-        /// </summary>
-        /// <remarks>
-        /// Uses ASCII only, based on ICAO and ISO/IEC 7501-1 standards. Please see the <see href="https://itftennis.atlassian.net/wiki/spaces/TODS/pages/1272938619/Transliteration+of+Names+to+Latin+Script">Transliteration of Names to Latin Script</see> document
-        /// <seealso href="https://en.wikipedia.org/wiki/Machine-readable_passport" />
-        /// <seealso href="https://www.iso.org/standard/45562.html" />
-        /// </remarks>
-        public string PassportFamilyName { get; set; }
-        /// <summary>
-        /// Passport Given Name
-        /// </summary>
-        /// <remarks>
-        /// Uses ASCII only, based on ICAO and ISO/IEC 7501-1 standards. Please see the <see href="https://itftennis.atlassian.net/wiki/spaces/TODS/pages/1272938619/Transliteration+of+Names+to+Latin+Script">Transliteration of Names to Latin Script</see> document
-        /// <seealso href="https://en.wikipedia.org/wiki/Machine-readable_passport" />
-        /// <seealso href="https://www.iso.org/standard/45562.html" />
-        /// </remarks>
-        public string PassportGivenName { get; set; }
-        /// <summary>
         /// Native Family Name
         /// </summary>
         /// <remarks>
