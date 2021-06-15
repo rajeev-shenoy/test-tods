@@ -1,0 +1,76 @@
+﻿name: tods-cd
+
+on: 
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dotnet-version: ['2.1.x', '3.0', '3.1.x', '5.0.x' ]
+
+    steps:
+      - name: Checkout code
+      - uses: actions/checkout@v2
+        with:
+            fetch-depth: 0
+      #- name: Create zip file
+      #  run: zip -x .git/**\* -x .vs/**\* -x .github/**\* -x bin/**.* -x obj/**\* -r Source.zip .
+      #- name: Create tar.gz file
+      #  run: tar --exclude='.git/**\*' --exclude='.vs/**\*' --exclude='.github/**\*' --exclude='bin/**.*' --exclude='obj/**\*' -czf Source.tar.gz .
+      - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v1.7.2
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+      - name: Install dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+      - name: Package
+        run: dotnet pack --no-build --configuration Release src/Tennis-Open-Data-Standards/Tennis-Open-Data-Standards.csproj --output .
+      #- name: Publish the package to nuget.org
+      #  run: dotnet nuget push *.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{secrets.NUGET_ORG_AUTH_KEY}} --skip-duplicate
+      - name: get-net-sdk-project-versions-action
+        uses: naminodarie/get-net-sdk-project-versions-action@v1.1.1
+        id: get-version
+        with:
+          proj-path: src/Tennis-Open-Data-Standards/Tennis-Open-Data-Standards.csproj
+      - name: Create release
+      - uses: fregante/release-with-changelog@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-template: '- {title} ← {hash}'
+          template: |
+            {commits}
+      
+            {range}
+      - name: Upload nuget pacakge
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: .
+          asset_name: Tennis-Open-Data-Standards.nupkg
+          asset_content_type: application/zip
+      #- name: Upload source zip file
+      #  uses: actions/upload-release-asset@v1
+      #  env:
+      #    GITHUB_TOKEN: ${{ github.token }}
+      #  with:
+      #    upload_url: ${{ steps.create_release.outputs.upload_url }}
+      #    asset_path: .
+      #    asset_name: Source.zip
+      #    asset_content_type: application/zip
+      #- name: Upload source tar.gz file
+      #  uses: actions/upload-release-asset@v1
+      #  env:
+      #    GITHUB_TOKEN: ${{ github.token }}
+      #  with:
+      #    upload_url: ${{ steps.create_release.outputs.upload_url }}
+      #    asset_path: .
+      #    asset_name: Source.tar.gz
+      #    asset_content_type: application/gzip
