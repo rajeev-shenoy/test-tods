@@ -61,6 +61,6 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: '/home/runner/work/test-tods/test-tods/'
+          asset_path: ./Tennis-Open-Data-Standards.${{ steps.get-version.outputs.package-version }}.nupkg
           asset_name: Tennis-Open-Data-Standards.${{ steps.get-version.outputs.package-version }}.nupkg
           asset_content_type: application/zip
